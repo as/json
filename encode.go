@@ -339,7 +339,7 @@ func (e *encodeState) error(err error) {
 func isEmptyValue(v reflect.Value) bool {
 	switch v.Kind() {
 	case reflect.Struct:
-        return reflect.Zero(v.Type()).Interface() == v.Interface()
+		return reflect.DeepEqual(reflect.Zero(v.Type()).Interface(), v.Interface())
 	case reflect.Array, reflect.Map, reflect.Slice, reflect.String:
 		return v.Len() == 0
 	case reflect.Bool:
