@@ -338,9 +338,9 @@ func (e *encodeState) error(err error) {
 
 func isEmptyValue(v reflect.Value) bool {
 	switch v.Kind() {
-	case reflect.Struct:
+	case reflect.Struct, reflect.Array:
 		return v.IsZero()
-	case reflect.Array, reflect.Map, reflect.Slice, reflect.String:
+	case reflect.Map, reflect.Slice, reflect.String:
 		return v.Len() == 0
 	case reflect.Bool:
 		return !v.Bool()
